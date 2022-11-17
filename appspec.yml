@@ -1,5 +1,9 @@
 version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /var/www/html/
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-west-2:932153253002:task-definition/laravel-app-task:14"
+        LoadBalancerInfo:
+          ContainerName: "php"
+          ContainerPort: 80
