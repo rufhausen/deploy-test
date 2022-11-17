@@ -7,7 +7,7 @@ phases:
    commands:
      - echo Build started on `date`
      - echo Installing composer deps
-     - composer install --no-progress --no-suggest
+     - composer install --no-progress
 
  post_build:
    commands:
