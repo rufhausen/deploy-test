@@ -13,5 +13,6 @@ phases:
      - echo Build completed on `date`
 artifacts:
   files:
+    - appspec.yml
     - '**/*'
   name: test
