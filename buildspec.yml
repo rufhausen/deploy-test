@@ -3,11 +3,11 @@ phases:
  pre_build:
    commands:
      - echo Logging in to Amazon ECR...
-     - pip install awscli --upgrade
      - aws --version
      - $(aws ecr get-login --region us-west-2 --no-include-email)
      - REPOSITORY_URI=932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-app
      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+     - echo $REPOSITORY_URI:$IMAGE_TAG
  build:
    commands:
      - echo Build started on `date`
