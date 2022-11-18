@@ -1,11 +1,17 @@
 version: 0.2
+
+variables:
+ AWS_REGION: us-west-2
+ AWS_ACCOUNT_ID: 932153253002
+ IMAGE_NAME: laravel-app
+ 
 phases:
  pre_build:
    commands:
      - echo Logging in to Amazon ECR...
      - aws --version
-     - $(aws ecr get-login --region us-west-2 --no-include-email)
-     - REPOSITORY_URI=932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-app
+     - $(aws ecr get-login --region $AWS_REGION --no-include-email)
+     - REPOSITORY_URI=932153253002.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME
      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
      - echo $REPOSITORY_URI:$IMAGE_TAG
  build:
@@ -19,7 +25,19 @@ phases:
      - echo Build completed on `date`
      - docker push $REPOSITORY_URI:$IMAGE_TAG
      - docker push $REPOSITORY_URI:latest
+     - printf '{"ImageURI":"'"$AWS_ACCOUNT_ID"'.dkr.ecr.'"$AWS_REGION"'.amazonaws.com/'"$IMAGE_NAME"':latest"}' > imageDetail.json
+     - cat imageDetail.json
+     - echo Build completed on `date`
 artifacts:
-  files:
-    - "**/*"
-  name: test
+  files: 
+    - 'image*.json'
+    - 'appspec.yaml'
+    - 'taskdef.json'
+  secondary-artifacts:
+    DefinitionArtifact:
+      files:
+        - appspec.yaml
+        - taskdef.json
+    ImageArtifact:
+      files:
+        - imageDetail.json
