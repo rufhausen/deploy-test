@@ -2,7 +2,7 @@
   "family": "laravel-app-task",
   "containerDefinitions":  [{
     "name": "nginx",
-    "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-nginx",
+    "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-nginx:latest",
     "cpu": 512,
     "memory": 1024,
     "networkMode": "awsvpc",
