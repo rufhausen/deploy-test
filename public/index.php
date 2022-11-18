@@ -2,4 +2,4 @@
 
 echo '<p>Testing</p>';
 
-phpinfo();
+phpinfo(INFO_GENERAL);
