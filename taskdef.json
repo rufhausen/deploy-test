@@ -28,7 +28,7 @@
   },
   {
     "name": "php",
-    "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-php",
+    "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-app:latest",
     "portMappings": [],
     "essential": true,
     "entryPoint": [],
