@@ -17,14 +17,14 @@ phases:
  build:
    commands:
      - echo Build started on `date`
-     - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
-     - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
+     - docker build -t $REPOSITORY_URI/$IMAGE_NAME:$IMAGE_TAG .
+     - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI/$IMAGE_NAME:latest
 
  post_build:
    commands:
      - echo Build completed on `date`
-     - docker push $REPOSITORY_URI:$IMAGE_TAG
-     - docker push $REPOSITORY_URI:latest
+     - docker push $REPOSITORY_URI/$IMAGE_NAME:$IMAGE_TAG
+     - docker push $REPOSITORY_URI/$IMAGE_NAME:latest
      - printf '{"ImageURI":"'"$AWS_ACCOUNT_ID"'.dkr.ecr.'"$AWS_REGION"'.amazonaws.com/'"$IMAGE_NAME"':latest"}' > imageDetail.json
      - cat imageDetail.json
      - echo Build completed on `date`
