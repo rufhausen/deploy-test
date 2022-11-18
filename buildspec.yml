@@ -29,16 +29,16 @@ phases:
       - printf '{"ImageURI":"'"$AWS_ACCOUNT_ID"'.dkr.ecr.'"$AWS_REGION"'.amazonaws.com/'"$IMAGE_NAME"':latest"}' > imageDetail.json
       - cat imageDetail.json
       - echo Build completed on `date`
-  artifacts:
-    files:
-      - "image*.json"
-      - "appspec.yaml"
-      - "taskdef.json"
-    secondary-artifacts:
-      DefinitionArtifact:
-        files:
-          - appspec.yaml
-          - taskdef.json
-      ImageArtifact:
-        files:
-          - imageDetail.json
+artifacts:
+  files:
+    - "image*.json"
+    - "appspec.yaml"
+    - "taskdef.json"
+  secondary-artifacts:
+    DefinitionArtifact:
+      files:
+        - appspec.yaml
+        - taskdef.json
+    ImageArtifact:
+      files:
+        - imageDetail.json
