@@ -1,5 +1,5 @@
 {
-  "family": "laravel-app",
+  "family": "laravel-app-task",
   "containerDefinitions":  [{
     "name": "nginx",
     "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-nginx",
