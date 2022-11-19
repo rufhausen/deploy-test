@@ -4,5 +4,4 @@ COPY ./ /var/www/html
 
 RUN chmod -R 755 /var/www/html/
 RUN find /var/www/html/ -type d -exec chmod 775 {} \;
-RUN chown -R www-data:www-data­ /var/www/html
 RUN composer install --no-scripts --no-autoloader --no-ansi --no-interaction --working-dir=/var/www/html/
