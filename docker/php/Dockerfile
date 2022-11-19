@@ -1,4 +1,4 @@
-FROM composer:latest as composer
+FROM 932153253002.dkr.ecr.us-west-2.amazonaws.com/composer:latest as composer
 LABEL stage=intermediate
 
 COPY ./ /app
