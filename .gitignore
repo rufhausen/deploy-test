@@ -17,3 +17,5 @@ yarn-error.log
 /.idea
 /.vscode
 .history
+/docker/mysql/data/*
+.DS_Store
