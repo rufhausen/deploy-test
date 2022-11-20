@@ -18,5 +18,6 @@ RUN php artisan config:clear
 
 # RUN chmod -R o+w /var/www/storage
 # RUN chmod -R ug+rwx storage
-RUN chmod -R 777 /var/www/storage
-RUN find /var/www/ -type d -exec chmod 775 {} \;
+RUN chmod 777 -R /var/www/storage
+RUN chmod 777 -R /var/www/storage/framework/sessions
+# RUN find /var/www/ -type d -exec chmod 775 {} \;
