@@ -14,7 +14,7 @@ COPY --from=composer /app /var/www
 
 RUN chmod -R o+w /var/www/storage
 RUN chmod -R ug+rwx var/www/storage \
-    /var/wwwbootstrap/cache \
+    /var/www/bootstrap/cache \
     /var/www/storage/logs \
     /var/www/storage/framework/sessions \
     /var/www/storage/framework/cache \
@@ -22,7 +22,7 @@ RUN chmod -R ug+rwx var/www/storage \
     /var/www/storage/framework/logs
 
 RUN chmod -R 777 var/www/storage \
-    /var/wwwbootstrap/cache \
+    /var/www/bootstrap/cache \
     /var/www/storage/logs \
     /var/www/storage/framework/sessions \
     /var/www/storage/framework/cache \
