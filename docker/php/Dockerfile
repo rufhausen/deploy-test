@@ -13,6 +13,6 @@ VOLUME ["/var/www"]
 COPY --from=composer /app /var/www
 
 RUN chmod -R o+w /var/www/storage
-RUN chmod -R ug+rwx storage bootstrap/cache storage/logs
+RUN chmod -R ug+rwx storage bootstrap/cache storage/logs storage/framework/
 RUN chmod -R 755 /var/www/
-RUN find /var/www/html/ -type d -exec chmod 775 {} \;
+RUN find /var/www/ -type d -exec chmod 775 {} \;
