@@ -12,21 +12,11 @@ VOLUME ["/var/www"]
 
 COPY --from=composer /app /var/www
 
-RUN chmod -R o+w /var/www/storage
-RUN chmod -R ug+rwx var/www/storage \
-    /var/www/bootstrap/cache \
-    /var/www/storage/logs \
-    /var/www/storage/framework/sessions \
-    /var/www/storage/framework/cache \
-    /var/www/storage/framework/cache/data \
-    /var/www/storage/framework/logs
+RUN chown -R www-data:www-data /var/www
+RUN php artisan cache:clear
+RUN php artisan config:clear
 
-RUN chmod -R 777 var/www/storage \
-    /var/www/bootstrap/cache \
-    /var/www/storage/logs \
-    /var/www/storage/framework/sessions \
-    /var/www/storage/framework/cache \
-    /var/www/storage/framework/cache/data \
-    /var/www/storage/framework/logs
-
-RUN find /var/www/ -type d -exec chmod 777 {} \;
+# RUN chmod -R o+w /var/www/storage
+# RUN chmod -R ug+rwx storage
+RUN chmod -R 777 /var/www/storage
+RUN find /var/www/ -type d -exec chmod 775 {} \;
