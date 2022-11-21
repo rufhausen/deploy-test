@@ -14,11 +14,17 @@ COPY --from=composer /app /var/www
 
 # RUN chmod -R o+w /var/www/storage
 # RUN chmod -R ug+rwx storage
-RUN find /var/www/ -type d -exec chmod 777 {} \
-    && find /var/www/ -type d -exec chown www-data {}
 RUN chown -R www-data /var/www/bootstrap \
     && chown -R www-data /var/www/storage
 RUN chmod -R 777 /var/www/storage/ \
     && chmod -R 777 /var/www/bootstrap/cache
+RUN chmod -R 777 /var/www/storage/framework/sessions \
+    && chmod -R 777 /var/www/bootstrap/framework/sessions
+RUN chmod -R 777 /var/www/storage/framework/cache \
+    && chmod -R 777 /var/www/bootstrap/framework/cache
+RUN chmod -R 777 /var/www/storage/framework/views \
+    && chmod -R 777 /var/www/bootstrap/framework/views
+RUN chmod -R 777 /var/www/storage/logs \
+    && chmod -R 777 /var/www/bootstrap/logs
 # RUN chmod 777 -R /var/www/storage
 # RUN chmod 777 -R /var/www/storage/framework/sessions
