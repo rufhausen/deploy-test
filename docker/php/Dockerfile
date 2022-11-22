@@ -8,7 +8,6 @@ RUN composer dump-autoload --classmap-authoritative
 FROM 932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-php:latest
 
 WORKDIR /var/www
-VOLUME ["/var/www"]
 
 COPY --from=composer /app /var/www
 
@@ -26,3 +25,5 @@ RUN chmod -R 777 /var/www/storage/framework/views \
     && chmod -R 777 /var/www/storage/framework/views
 RUN chmod -R 777 /var/www/storage/logs \
     && chmod -R 777 /var/www/storage/logs
+
+VOLUME ["/var/www"]
