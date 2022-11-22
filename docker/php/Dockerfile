@@ -19,11 +19,11 @@ RUN chown -R www-data /var/www/bootstrap \
 RUN chmod -R 777 /var/www/storage/ \
     && chmod -R 777 /var/www/bootstrap/cache
 RUN chmod -R 777 /var/www/storage/framework/sessions \
-    && chmod -R 777 /var/www/bootstrap/framework/sessions
+    && chmod -R 777 /var/www/storage/framework/sessions
 RUN chmod -R 777 /var/www/storage/framework/cache \
-    && chmod -R 777 /var/www/bootstrap/framework/cache
+    && chmod -R 777 /var/www/storage/framework/cache
 RUN chmod -R 777 /var/www/storage/framework/views \
-    && chmod -R 777 /var/www/bootstrap/framework/views
+    && chmod -R 777 /var/www/storage/framework/views
 RUN chmod -R 777 /var/www/storage/logs \
     && chmod -R 777 /var/www/bootstrap/logs
 # RUN chmod 777 -R /var/www/storage
