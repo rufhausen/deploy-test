@@ -26,5 +26,3 @@ RUN chmod -R 777 /var/www/storage/framework/views \
     && chmod -R 777 /var/www/storage/framework/views
 RUN chmod -R 777 /var/www/storage/logs \
     && chmod -R 777 /var/www/storage/logs
-# RUN chmod 777 -R /var/www/storage
-# RUN chmod 777 -R /var/www/storage/framework/sessions

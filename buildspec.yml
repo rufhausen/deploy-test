@@ -32,12 +32,6 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - "**/*"
-  secondary-artifacts:
-    DefinitionArtifact:
-      files:
-        - appspec.yml
-        - taskdef.json
-    ImageArtifact:
-      files:
-        - imageDetail.json
+    - appspec.yml
+    - taskdef.json
+    - imageDetail.json
