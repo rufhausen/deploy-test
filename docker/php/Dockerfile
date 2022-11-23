@@ -14,4 +14,4 @@ COPY --from=composer /app /var/www
 
 USER root
 
-ENTRYPOINT [ "/bin/sh", "chown -R www-data:www-data /var/www && chmod -R 777 /var/www" ]
+ENTRYPOINT ["chown -R www-data:www-data /var/www && chmod -R 777 /var/www"]
