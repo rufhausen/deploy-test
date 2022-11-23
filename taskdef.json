@@ -1,12 +1,25 @@
 {
     "family": "laravel-app-task",
-    "containerDefinitions": [{
+    "containerDefinitions": [
+        {
             "name": "nginx",
             "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-nginx:latest",
             "cpu": 512,
             "memory": 1024,
             "networkMode": "awsvpc",
+            "disableNetworking": false,
+            "privileged": false,
+            "readonlyRootFilesystem": false,
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "dockerSecurityOptions": [],
+            "interactive": true,
             "pseudoTerminal": true,
+            "essential": true,
+            "entryPoint": [],
+            "command": [],
+            "environment": [],
+            "mountPoints": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -16,15 +29,19 @@
                     "awslogs-stream-prefix": "ecs"
                 }
             },
-            "portMappings": [{
-                "containerPort": 80,
-                "hostPort": 80,
-                "protocol": "tcp"
-            }],
-            "volumesFrom": [{
-                "sourceContainer": "php",
-                "readOnly": true
-            }]
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "volumesFrom": [
+                {
+                    "sourceContainer": "php",
+                    "readOnly": true
+                }
+            ]
         },
         {
             "name": "php",
@@ -33,7 +50,18 @@
             "essential": true,
             "entryPoint": [],
             "command": [],
-            "environment": [{
+            "mountPoints": [],
+            "volumesFrom": [],
+            "disableNetworking": false,
+            "privileged": false,
+            "readonlyRootFilesystem": false,
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "dockerSecurityOptions": [],
+            "interactive": true,
+            "pseudoTerminal": true,
+            "environment": [
+                {
                     "name": "APP_DEBUG",
                     "value": "true"
                 },
@@ -138,16 +166,6 @@
                     "value": "120"
                 }
             ],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "disableNetworking": false,
-            "privileged": false,
-            "readonlyRootFilesystem": false,
-            "dnsServers": [],
-            "dnsSearchDomains": [],
-            "dockerSecurityOptions": [],
-            "interactive": true,
-            "pseudoTerminal": true,
             "dockerLabels": {
                 "KeyName": ""
             },
