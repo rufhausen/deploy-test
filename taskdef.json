@@ -159,7 +159,7 @@
                 },
                 {
                     "name": "SESSION_DRIVER",
-                    "value": "redis"
+                    "value": "file"
                 },
                 {
                     "name": "SESSION_LIFETIME",
