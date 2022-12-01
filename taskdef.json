@@ -23,7 +23,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/laravel_app",
+                    "awslogs-group": "/ecs/laravel",
                     "awslogs-region": "us-west-2",
                     "awslogs-create-group": "true",
                     "awslogs-stream-prefix": "ecs"
@@ -87,7 +87,7 @@
                 },
                 {
                     "name": "CACHE_DRIVER",
-                    "value": "file"
+                    "value": "redis"
                 },
                 {
                     "name": "DB_CONNECTION",
@@ -147,7 +147,7 @@
                 },
                 {
                     "name": "REDIS_HOST",
-                    "value": "127.0.0.1"
+                    "valueFrom": "arn:aws:ssm:us-west-2:932153253002:parameter/redis_host"
                 },
                 {
                     "name": "REDIS_PASSWORD",
@@ -159,7 +159,7 @@
                 },
                 {
                     "name": "SESSION_DRIVER",
-                    "value": "file"
+                    "value": "redis"
                 },
                 {
                     "name": "SESSION_LIFETIME",
@@ -172,7 +172,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/laravel_app",
+                    "awslogs-group": "/ecs/laravel",
                     "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "ecs"
                 }
