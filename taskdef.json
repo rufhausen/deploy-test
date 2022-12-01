@@ -151,7 +151,7 @@
                 },
                 {
                     "name": "REDIS_PASSWORD",
-                    "value": "null"
+                    "value": ""
                 },
                 {
                     "name": "REDIS_PORT",
