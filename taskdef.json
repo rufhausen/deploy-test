@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "nginx",
-            "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-nginx:latest",
+            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-nginx:latest",
             "cpu": 512,
             "memory": 1024,
             "networkMode": "awsvpc",
@@ -45,7 +45,7 @@
         },
         {
             "name": "php",
-            "image": "932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-app:latest",
+            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-app:latest",
             "portMappings": [],
             "essential": true,
             "entryPoint": [],
