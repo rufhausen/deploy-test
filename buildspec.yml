@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   variables:
-    AWS_REGION: us-west-2
-    AWS_ACCOUNT_ID: 932153253002
+    AWS_REGION: us-west-1
+    AWS_ACCOUNT_ID: 450370295967
     IMAGE_NAME: laravel-app
 
 phases:

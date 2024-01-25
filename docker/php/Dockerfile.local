@@ -5,7 +5,7 @@
 # RUN composer install --ignore-platform-reqs --no-scripts --no-autoloader --no-ansi --no-interaction
 # RUN composer dump-autoload --classmap-authoritative
 
-FROM 932153253002.dkr.ecr.us-west-2.amazonaws.com/laravel-php:latest
+FROM 450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-php:latest
 
 WORKDIR /var/www
 # VOLUME ["/var/www"]

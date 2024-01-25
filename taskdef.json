@@ -24,7 +24,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "/ecs/laravel",
-                    "awslogs-region": "us-west-2",
+                    "awslogs-region": "us-west-1",
                     "awslogs-create-group": "true",
                     "awslogs-stream-prefix": "ecs"
                 }
@@ -147,7 +147,7 @@
                 },
                 {
                     "name": "REDIS_HOST",
-                    "valueFrom": "arn:aws:ssm:us-west-2:932153253002:parameter/redis_host"
+                    "valueFrom": "arn:aws:ssm:us-west-1:450370295967:parameter/redis_host"
                 },
                 {
                     "name": "REDIS_PASSWORD",
@@ -173,7 +173,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "/ecs/laravel",
-                    "awslogs-region": "us-west-2",
+                    "awslogs-region": "us-west-1",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
