@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "nginx",
-            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-nginx:latest",
+            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/nginx:latest",
             "cpu": 512,
             "memory": 1024,
             "networkMode": "awsvpc",
