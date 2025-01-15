@@ -1,6 +1,8 @@
 {
     "family": "laravel-test-stack",
     "networkMode": "awsvpc",
+    "taskRoleArn": "arn:aws:iam::450370295967:role/LaravelTestStack-TaskRole",
+    "executionRoleArn": "arn:aws:iam::450370295967:role/LaravelTestStack-ExecutionRole",
     "requiresCompatibilities": [
         "FARGATE"
     ],
@@ -133,7 +135,5 @@
                 }
             ]
         }
-    ],
-    "executionRoleArn": "<EXECUTION_ROLE_ARN>",
-    "taskRoleArn": "<TASK_ROLE_ARN>"
+    ]
 }
