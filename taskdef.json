@@ -1,65 +1,22 @@
 {
-    "family": "laravel-app-task",
+    "family": "laravel-test-stack",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
     "containerDefinitions": [
         {
-            "name": "nginx",
-            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/nginx:latest",
-            "cpu": 512,
-            "memory": 1024,
-            "networkMode": "awsvpc",
-            "disableNetworking": false,
-            "privileged": false,
-            "readonlyRootFilesystem": false,
-            "dnsServers": [],
-            "dnsSearchDomains": [],
-            "dockerSecurityOptions": [],
-            "interactive": true,
-            "pseudoTerminal": true,
-            "essential": true,
-            "entryPoint": [],
-            "command": [],
-            "environment": [],
-            "mountPoints": [],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "/ecs/laravel",
-                    "awslogs-region": "us-west-1",
-                    "awslogs-create-group": "true",
-                    "awslogs-stream-prefix": "ecs"
-                }
-            },
+            "name": "php",
+            "image": "<PHP_IMAGE>",
+            "essential": false,
             "portMappings": [
                 {
-                    "containerPort": 80,
-                    "hostPort": 80,
+                    "containerPort": 9000,
                     "protocol": "tcp"
                 }
             ],
-            "volumesFrom": [
-                {
-                    "sourceContainer": "php",
-                    "readOnly": true
-                }
-            ]
-        },
-        {
-            "name": "php",
-            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-app:latest",
-            "portMappings": [],
-            "essential": true,
-            "entryPoint": [],
-            "command": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "disableNetworking": false,
-            "privileged": false,
-            "readonlyRootFilesystem": false,
-            "dnsServers": [],
-            "dnsSearchDomains": [],
-            "dockerSecurityOptions": [],
-            "interactive": true,
-            "pseudoTerminal": true,
             "environment": [
                 {
                     "name": "APP_DEBUG",
@@ -146,18 +103,6 @@
                     "value": "sync"
                 },
                 {
-                    "name": "REDIS_HOST",
-                    "valueFrom": "arn:aws:ssm:us-west-1:450370295967:parameter/redis_host"
-                },
-                {
-                    "name": "REDIS_PASSWORD",
-                    "value": ""
-                },
-                {
-                    "name": "REDIS_PORT",
-                    "value": "6379"
-                },
-                {
                     "name": "SESSION_DRIVER",
                     "value": "file"
                 },
@@ -166,24 +111,43 @@
                     "value": "120"
                 }
             ],
-            "dockerLabels": {
-                "KeyName": ""
-            },
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/laravel",
+                    "awslogs-group": "laravel-test-stack",
                     "awslogs-region": "us-west-1",
-                    "awslogs-stream-prefix": "ecs"
+                    "awslogs-stream-prefix": "php"
+                }
+            }
+        },
+        {
+            "name": "nginx",
+            "image": "nginx:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "PHP_FPM_HOST",
+                    "value": "localhost"
+                },
+                {
+                    "name": "PHP_FPM_PORT",
+                    "value": "9000"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "laravel-test-stack",
+                    "awslogs-region": "us-west-1",
+                    "awslogs-stream-prefix": "nginx"
                 }
             }
         }
-    ],
-    "executionRoleArn": "EcsTaskExecutionRole",
-    "cpu": "512",
-    "memory": "1024",
-    "networkMode": "awsvpc",
-    "requiresCompatibilities": [
-        "FARGATE"
     ]
 }

@@ -26,9 +26,18 @@ phases:
       - docker push $ECR_REPO:$IMAGE_TAG
       - docker push $ECR_REPO:latest
       - printf '{"ImageURI":"%s"}' $ECR_REPO:$IMAGE_TAG > imageDetail.json
-      - printf '{"Version":{"Ref":"Version"},"ServiceName":{"Ref":"ServiceName"},"ImageURI":"%s"}' $ECR_REPO:$IMAGE_TAG > taskdef.json
+      - cp taskdef-template.json taskdef.json
+      - sed -i "s|<PHP_IMAGE>|$ECR_REPO:$IMAGE_TAG|g" taskdef.json
+      - echo "Files in current directory:"
+      - ls -la
+      - echo "Contents of appspec.yml:"
+      - cat appspec.yml
+      - echo "Contents of taskdef.json:"
+      - cat taskdef.json
+
 artifacts:
   files:
     - appspec.yml
     - taskdef.json
     - imageDetail.json
+  discard-paths: yes
