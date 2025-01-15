@@ -1,8 +1,7 @@
 {
     "family": "laravel-test-stack",
     "networkMode": "awsvpc",
-    "taskRoleArn": "${TASK_ROLE_ARN}",
-    "executionRoleArn": "${EXECUTION_ROLE_ARN}",
+    "taskDefinitionArn": "<TASK_DEFINITION>",
     "requiresCompatibilities": [
         "FARGATE"
     ],
