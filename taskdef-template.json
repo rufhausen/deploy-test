@@ -1,0 +1,153 @@
+{
+    "family": "laravel-test-stack",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
+    "containerDefinitions": [
+        {
+            "name": "php",
+            "image": "<PHP_IMAGE>",
+            "essential": false,
+            "portMappings": [
+                {
+                    "containerPort": 9000,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "APP_DEBUG",
+                    "value": "true"
+                },
+                {
+                    "name": "APP_ENV",
+                    "value": "development"
+                },
+                {
+                    "name": "APP_KEY",
+                    "value": "base64:KqTIA6NYOlMUR7XAv7G9QXtWJcLvkohj/zEl/7QP0KQ="
+                },
+                {
+                    "name": "APP_NAME",
+                    "value": "Laravel"
+                },
+                {
+                    "name": "APP_URL",
+                    "value": "http://localhost"
+                },
+                {
+                    "name": "BROADCAST_DRIVER",
+                    "value": "log"
+                },
+                {
+                    "name": "CACHE_DRIVER",
+                    "value": "redis"
+                },
+                {
+                    "name": "DB_CONNECTION",
+                    "value": "mysql"
+                },
+                {
+                    "name": "DB_DATABASE",
+                    "value": "homestead"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "127.0.0.1"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "value": "secret"
+                },
+                {
+                    "name": "DB_PORT",
+                    "value": "3306"
+                },
+                {
+                    "name": "DB_USERNAME",
+                    "value": "homestead"
+                },
+                {
+                    "name": "LOG_CHANNEL",
+                    "value": "stderr"
+                },
+                {
+                    "name": "MAIL_DRIVER",
+                    "value": "smtp"
+                },
+                {
+                    "name": "MAIL_ENCRYPTION",
+                    "value": "null"
+                },
+                {
+                    "name": "MAIL_HOST",
+                    "value": "smtp.mailtrap.io"
+                },
+                {
+                    "name": "MAIL_PASSWORD",
+                    "value": "null"
+                },
+                {
+                    "name": "MAIL_PORT",
+                    "value": "2525"
+                },
+                {
+                    "name": "MAIL_USERNAME",
+                    "value": "null"
+                },
+                {
+                    "name": "QUEUE_DRIVER",
+                    "value": "sync"
+                },
+                {
+                    "name": "SESSION_DRIVER",
+                    "value": "file"
+                },
+                {
+                    "name": "SESSION_LIFETIME",
+                    "value": "120"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "laravel-test-stack",
+                    "awslogs-region": "us-west-1",
+                    "awslogs-stream-prefix": "php"
+                }
+            }
+        },
+        {
+            "name": "nginx",
+            "image": "nginx:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "PHP_FPM_HOST",
+                    "value": "localhost"
+                },
+                {
+                    "name": "PHP_FPM_PORT",
+                    "value": "9000"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "laravel-test-stack",
+                    "awslogs-region": "us-west-1",
+                    "awslogs-stream-prefix": "nginx"
+                }
+            }
+        }
+    ]
+}
