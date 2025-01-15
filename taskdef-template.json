@@ -9,7 +9,7 @@
     "containerDefinitions": [
         {
             "name": "php",
-            "image": "<PHP_IMAGE>",
+            "image": "PHP_IMAGE",
             "essential": false,
             "portMappings": [
                 {
