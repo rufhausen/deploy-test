@@ -110,15 +110,7 @@
                     "name": "SESSION_LIFETIME",
                     "value": "120"
                 }
-            ],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "laravel-test-stack",
-                    "awslogs-region": "us-west-1",
-                    "awslogs-stream-prefix": "php"
-                }
-            }
+            ]
         },
         {
             "name": "nginx",
@@ -139,15 +131,7 @@
                     "name": "PHP_FPM_PORT",
                     "value": "9000"
                 }
-            ],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "laravel-test-stack",
-                    "awslogs-region": "us-west-1",
-                    "awslogs-stream-prefix": "nginx"
-                }
-            }
+            ]
         }
     ]
 }
