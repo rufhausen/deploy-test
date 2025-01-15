@@ -27,8 +27,6 @@ phases:
       - docker push $ECR_REPO:latest
       - printf '{"ImageURI":"%s"}' $ECR_REPO:$IMAGE_TAG > imageDetail.json
       - printf '{"Version":{"Ref":"Version"},"ServiceName":{"Ref":"ServiceName"},"ImageURI":"%s"}' $ECR_REPO:$IMAGE_TAG > taskdef.json
-      - cat taskdef.json
-      - cat appspec.yaml
 artifacts:
   files:
     - appspec.yml
