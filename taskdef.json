@@ -6,6 +6,7 @@
             "name": "php",
             "image": "<PHP_IMAGE>",
             "essential": false,
+            "memory": 512,
             "portMappings": [
                 {
                     "containerPort": 9000,
@@ -35,6 +36,7 @@
             "name": "nginx",
             "image": "nginx:latest",
             "essential": true,
+            "memory": 512,
             "portMappings": [
                 {
                     "containerPort": 80,
