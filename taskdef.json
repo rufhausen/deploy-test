@@ -10,7 +10,7 @@
     "containerDefinitions": [
         {
             "name": "php",
-            "image": "<PHP_IMAGE>",
+            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-app",
             "essential": false,
             "memory": 512,
             "portMappings": [
