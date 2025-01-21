@@ -37,8 +37,6 @@ phases:
       - docker push $NGINX_ECR_REPO:latest
       - printf '{"ImageURI":"%s"}' $PHP_ECR_REPO:$IMAGE_TAG > imageDetail.json
       - printf '{"ImageURI":"%s"}' $NGINX_ECR_REPO:$IMAGE_TAG > imageDetail-nginx.json
-      - sed -i "s|<PHP_IMAGE>|$PHP_ECR_REPO:$IMAGE_TAG|g" taskdef.json
-      - sed -i "s|<NGINX_IMAGE>|$NGINX_ECR_REPO:$IMAGE_TAG|g" taskdef.json
       - echo "Files in current directory:"
       - ls -la
       - echo "Contents of appspec.yml:"
