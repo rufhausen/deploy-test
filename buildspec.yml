@@ -24,6 +24,7 @@ phases:
       - cd docker/nginx
       - docker build -f Dockerfile -t $NGINX_ECR_REPO:$IMAGE_TAG .
       - docker tag $NGINX_ECR_REPO:$IMAGE_TAG $NGINX_ECR_REPO:latest
+      - cd ../..
 
   post_build:
     commands:
