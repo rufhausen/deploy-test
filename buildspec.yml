@@ -21,7 +21,8 @@ phases:
       - docker build -f docker/php/Dockerfile -t $PHP_ECR_REPO:$IMAGE_TAG .
       - docker tag $PHP_ECR_REPO:$IMAGE_TAG $PHP_ECR_REPO:latest
       - echo Building Nginx image...
-      - docker build -f docker/nginx/Dockerfile -t $NGINX_ECR_REPO:$IMAGE_TAG .
+      - cd docker/nginx
+      - docker build -f Dockerfile -t $NGINX_ECR_REPO:$IMAGE_TAG .
       - docker tag $NGINX_ECR_REPO:$IMAGE_TAG $NGINX_ECR_REPO:latest
 
   post_build:
