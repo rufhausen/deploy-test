@@ -40,7 +40,7 @@
         },
         {
             "name": "nginx",
-            "image": "nginx:latest",
+            "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/nginx:latest",
             "essential": true,
             "memory": 512,
             "portMappings": [
