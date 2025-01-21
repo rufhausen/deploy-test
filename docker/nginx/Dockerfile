@@ -1,3 +1,4 @@
+
 FROM nginx:1.17-alpine AS nginx_laravel
 
 # RUN apk update; \
