@@ -4,30 +4,38 @@ env:
   variables:
     AWS_REGION: us-west-1
     AWS_ACCOUNT_ID: 450370295967
-    IMAGE_NAME: laravel-app
+    PHP_ECR_REPO: 450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-app
+    NGINX_ECR_REPO: 450370295967.dkr.ecr.us-west-1.amazonaws.com/nginx
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPO
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
       - echo Build started on `date`
-      - echo $ECR_REPO
-      - docker build -f docker/php/Dockerfile -t $ECR_REPO:$IMAGE_TAG .
-      - docker tag $ECR_REPO:$IMAGE_TAG $ECR_REPO:latest
+      - echo Building PHP application image...
+      - docker build -f docker/php/Dockerfile -t $PHP_ECR_REPO:$IMAGE_TAG .
+      - docker tag $PHP_ECR_REPO:$IMAGE_TAG $PHP_ECR_REPO:latest
+      - echo Building Nginx image...
+      - docker build -f docker/nginx/Dockerfile -t $NGINX_ECR_REPO:$IMAGE_TAG .
+      - docker tag $NGINX_ECR_REPO:$IMAGE_TAG $NGINX_ECR_REPO:latest
 
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push $ECR_REPO:$IMAGE_TAG
-      - docker push $ECR_REPO:latest
-      - printf '{"ImageURI":"%s"}' $ECR_REPO:$IMAGE_TAG > imageDetail.json
-      - sed -i "s|<PHP_IMAGE>|$ECR_REPO:$IMAGE_TAG|g" taskdef.json
-      - sed -i "s|<NGINX_IMAGE>|$ECR_REPO-nginx:$IMAGE_TAG|g" taskdef.json
+      - echo Pushing PHP image...
+      - docker push $PHP_ECR_REPO:$IMAGE_TAG
+      - docker push $PHP_ECR_REPO:latest
+      - echo Pushing Nginx image...
+      - docker push $NGINX_ECR_REPO:$IMAGE_TAG
+      - docker push $NGINX_ECR_REPO:latest
+      - printf '{"PHP_ImageURI":"%s","NGINX_ImageURI":"%s"}' $PHP_ECR_REPO:$IMAGE_TAG $NGINX_ECR_REPO:$IMAGE_TAG > imageDetail.json
+      - sed -i "s|<PHP_IMAGE>|$PHP_ECR_REPO:$IMAGE_TAG|g" taskdef.json
+      - sed -i "s|<NGINX_IMAGE>|$NGINX_ECR_REPO:$IMAGE_TAG|g" taskdef.json
       - echo "Files in current directory:"
       - ls -la
       - echo "Contents of appspec.yml:"
@@ -37,14 +45,6 @@ phases:
 
 artifacts:
   files:
-    - 'image*.json'
-    - 'appspec.yml'
-    - 'taskdef.json'
-  secondary-artifacts:
-    DefinitionArtifact:
-      files:
-        - appspec.yaml
-        - taskdef.json
-    ImageArtifact:
-      files:
-        - imageDetail.json
+    - imageDetail.json
+    - appspec.yml
+    - taskdef.json
