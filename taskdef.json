@@ -1,7 +1,7 @@
 {
     "family": "laravel-test-stack",
     "networkMode": "awsvpc",
-    "executionRoleArn": "EcsTaskExecutionRole",
+    "executionRoleArn": "LaravelEcsTaskExecutionRole",
     "cpu": "1024",
     "memory": "2048",
     "requiresCompatibilities": [
