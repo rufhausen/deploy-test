@@ -5,8 +5,8 @@ RUN apk add --no-cache curl
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN mkdir -p /var/www/public && \
-    chown -R nginx:nginx /var/www && \
-    chmod -R 755 /var/www
+# RUN mkdir -p /var/www/public && \
+#     chown -R nginx:nginx /var/www && \
+#     chmod -R 755 /var/www
 
-VOLUME ["/var/www"]
+# VOLUME ["/var/www"]
