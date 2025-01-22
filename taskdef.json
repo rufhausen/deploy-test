@@ -8,16 +8,6 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "volumes": [
-        {
-            "name": "app-storage",
-            "dockerVolumeConfiguration": {
-                "scope": "task",
-                "autoprovision": true,
-                "driver": "local"
-            }
-        }
-    ],
     "containerDefinitions": [
         {
             "name": "php",
@@ -25,13 +15,6 @@
             "essential": true,
             "memory": 1024,
             "memoryReservation": 512,
-            "mountPoints": [
-                {
-                    "sourceVolume": "app-storage",
-                    "containerPath": "/var/www",
-                    "readOnly": false
-                }
-            ],
             "portMappings": [
                 {
                     "containerPort": 9000,
@@ -139,13 +122,6 @@
             "essential": true,
             "memory": 512,
             "memoryReservation": 256,
-            "mountPoints": [
-                {
-                    "sourceVolume": "app-storage",
-                    "containerPath": "/var/www",
-                    "readOnly": true
-                }
-            ],
             "portMappings": [
                 {
                     "containerPort": 80,
