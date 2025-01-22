@@ -2,6 +2,7 @@
     "family": "laravel-test-stack",
     "networkMode": "awsvpc",
     "executionRoleArn": "LaravelEcsTaskExecutionRole",
+    "taskRoleArn": "LaravelEcsTaskExecutionRole",
     "cpu": "1024",
     "memory": "2048",
     "requiresCompatibilities": [
@@ -135,6 +136,12 @@
                 {
                     "name": "PHP_FPM_PORT",
                     "value": "9000"
+                }
+            ],
+            "dependsOn": [
+                {
+                    "containerName": "php",
+                    "condition": "HEALTHY"
                 }
             ],
             "logConfiguration": {
