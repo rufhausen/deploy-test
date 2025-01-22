@@ -128,6 +128,10 @@
                     "protocol": "tcp"
                 }
             ],
+            "volumesFrom": [{
+                "sourceContainer": "php",
+                "readOnly": true
+              }],
             "healthCheck": {
                 "command": ["CMD-SHELL", "curl -f http://localhost/health || exit 1"],
                 "interval": 30,
@@ -135,6 +139,12 @@
                 "retries": 3,
                 "startPeriod": 60
             },
+            "dependsOn": [
+                {
+                    "containerName": "php",
+                    "condition": "START"
+                }
+            ],
             "environment": [
                 {
                     "name": "PHP_FPM_HOST",

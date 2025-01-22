@@ -22,7 +22,8 @@ phases:
       - docker tag $PHP_ECR_REPO:$IMAGE_TAG $PHP_ECR_REPO:latest
       - echo Building Nginx image...
       - cd docker/nginx
-      - cp -r ../../public ./public
+      - mkdir -p public
+      - cp -r ../../public/* ./public/
       - docker build -f Dockerfile -t $NGINX_ECR_REPO:$IMAGE_TAG .
       - docker tag $NGINX_ECR_REPO:$IMAGE_TAG $NGINX_ECR_REPO:latest
       - rm -rf ./public
