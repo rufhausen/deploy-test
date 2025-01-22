@@ -139,6 +139,12 @@
                 "retries": 3,
                 "startPeriod": 120
             },
+            "dependsOn": [
+                {
+                    "containerName": "php",
+                    "condition": "START"
+                }
+            ],
             "environment": [
                 {
                     "name": "PHP_FPM_HOST",
