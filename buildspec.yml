@@ -50,3 +50,4 @@ artifacts:
     - imageDetail-nginx.json
     - appspec.yml
     - taskdef.json
+  discard-paths: yes
