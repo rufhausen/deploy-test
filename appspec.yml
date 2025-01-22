@@ -8,3 +8,9 @@ Resources:
           ContainerName: "nginx"
           ContainerPort: 80
         PlatformVersion: "LATEST"
+Hooks:
+  BeforeInstall: "BeforeInstall"
+  AfterInstall: "AfterInstall"
+  AfterAllowTestTraffic: "AfterAllowTestTraffic"
+  BeforeAllowTraffic: "BeforeAllowTraffic"
+  AfterAllowTraffic: "AfterAllowTraffic"

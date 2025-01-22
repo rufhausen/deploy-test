@@ -4,5 +4,3 @@ FROM nginx:1.17-alpine AS nginx_laravel
 RUN apk add --no-cache curl
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-
-VOLUME ["/var/www"]
