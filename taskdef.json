@@ -138,12 +138,6 @@
                     "value": "9000"
                 }
             ],
-            "dependsOn": [
-                {
-                    "containerName": "php",
-                    "condition": "HEALTHY"
-                }
-            ],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
