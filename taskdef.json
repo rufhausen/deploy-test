@@ -1,20 +1,20 @@
 {
-    "family": "laravel-test-stack",
+    "family": "TaskDef",
+    "taskRoleArn": "arn:aws:iam::450370295967:role/LaravelEcsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::450370295967:role/LaravelEcsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "executionRoleArn": "LaravelEcsTaskExecutionRole",
-    "taskRoleArn": "LaravelEcsTaskExecutionRole",
-    "cpu": "1024",
-    "memory": "2048",
     "requiresCompatibilities": [
         "FARGATE"
     ],
+    "cpu": "1024",
+    "memory": "2048",
     "containerDefinitions": [
         {
             "name": "php",
             "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/laravel-app:latest",
             "essential": true,
-            "memory": 1024,
-            "memoryReservation": 512,
+            "cpu": 256,
+            "memory": 512,
             "portMappings": [
                 {
                     "containerPort": 9000,
@@ -120,18 +120,24 @@
             "name": "nginx",
             "image": "450370295967.dkr.ecr.us-west-1.amazonaws.com/nginx:latest",
             "essential": true,
+            "cpu": 256,
             "memory": 512,
-            "memoryReservation": 256,
             "portMappings": [
                 {
                     "containerPort": 80,
                     "protocol": "tcp"
                 }
             ],
-            "volumesFrom": [{
-                "sourceContainer": "php",
-                "readOnly": true
-              }],
+            "environment": [
+                {
+                    "name": "PHP_FPM_HOST",
+                    "value": "localhost"
+                },
+                {
+                    "name": "PHP_FPM_PORT",
+                    "value": "9000"
+                }
+            ],
             "healthCheck": {
                 "command": ["CMD-SHELL", "curl -f http://localhost/health || exit 1"],
                 "interval": 30,
@@ -145,14 +151,10 @@
                     "condition": "START"
                 }
             ],
-            "environment": [
+            "volumesFrom": [
                 {
-                    "name": "PHP_FPM_HOST",
-                    "value": "localhost"
-                },
-                {
-                    "name": "PHP_FPM_PORT",
-                    "value": "9000"
+                    "sourceContainer": "php",
+                    "readOnly": true
                 }
             ],
             "logConfiguration": {
